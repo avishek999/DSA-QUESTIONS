@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int firstocc(vector<int> arr, int target) {
+    int start = 0;
+    int end = arr.size() - 1;
+    int ans = -1;
+
+    int mid = start + (end - start) / 2;
+
+    while (start <= end) {
+        
+
+        if (arr[mid] == target) {
+            ans  = mid;
+           end = mid - 1;
+        } else if (arr[mid] > target) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+        mid = start + (end - start) / 2;
+    }
+
+    return ans; // Return -1 if the target element is not found in the array
+}
+
+int lastocc(vector<int> arr, int target) {
+    int start = 0;
+    int end = arr.size() - 1;
+    int ans = -1;
+
+    int mid = start + (end - start) / 2;
+
+    while (start <= end) {
+        
+
+        if (arr[mid] == target) {
+            ans  = mid;
+           start = mid + 1;
+        } else if (arr[mid] > target) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+        mid = start + (end - start) / 2;
+    }
+
+    return ans;
+}
+int main() {
+    vector<int> arr = {1, 2,4, 4, 4, 4, 4, 5, 6};
+    int target = 4;
+    int total ;
+ int ans = firstocc(arr,target);
+  int ans1 = lastocc(arr,target);
+   cout<<"first :"<<ans<<endl<<"last occ:"<<ans1<<endl;
+
+   cout<<"total:"<<(ans1-ans)+1<<endl;
+    return 0;
+}
